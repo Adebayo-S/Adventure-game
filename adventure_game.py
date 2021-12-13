@@ -6,10 +6,17 @@ def start():
 
     enemies = ["dragon", "witch", "cyclops", "werewolf", "vampire"]
     enemy = random.choice(enemies)
+    swordOfOgoroth = False      
 
-    playerName = input("what's your name?")
-
-    swordOfOgoroth = False
+    def getPlayerName():
+        while True:
+            getPlayerName.playerName = input("what's your name?")
+            if getPlayerName.playerName is None:
+                print("You didn't input a value, please try again")
+                continue            
+            else:
+                print("welcome", getPlayerName.playerName)
+                break
 
     def toggle(state):
         state = not state
@@ -105,8 +112,8 @@ def start():
 
         def caught():
             print_pause(
-                "Coward! The {} chases you as you run and kills you." +
-                " You lose!".format(enemy)
+                "Coward! The {} chases you as you run ".format(enemy) +
+                "and kills you. You lose!"
             )
 
         if luck == 1:
@@ -134,12 +141,12 @@ def start():
             )
 
         while True:
-            houseChoice = int(input("Would you like to (1) fight or (2)" +
-                                    " run away?"))
-            if houseChoice == 1:
+            houseChoice = input("Would you like to (1) fight or (2)" +
+                                    " run away?")
+            if houseChoice == "1":
                 fight()
                 break
-            elif houseChoice == 2:
+            elif houseChoice == "2":
                 print()
                 field()
                 break
@@ -153,19 +160,21 @@ def start():
         print_pause("What would you like to do?")
 
         while True:
-            choice = int(input("(Please enter 1 or 2)"))
-            if choice == 1:
+            choice = input("(Please enter 1 or 2)")
+            if choice == "1":
                 house()
                 break
-            elif choice == 2:
+            elif choice == "2":
                 cave()
                 break
             else:
                 print("Invalid input, please try again")
                 continue
+    
+    getPlayerName()
 
     print_pause(
-        "{} finds himself standing in an open field ".format(playerName) +
+        "{} finds himself standing in an open field ".format(getPlayerName.playerName) +
         "filled with grass and yellow wildflowers."
     )
 
